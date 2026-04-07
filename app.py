@@ -26,12 +26,12 @@ def insert_safe():
 @app.route("/count-tesla-primary",methods=["GET"])
 def count_tesla_primary():
     collections = db["vehicles"].with_options(read_preference=ReadPreference.PRIMARY)
-    return jsonify({"count":collections.count_documents({"make":"Tesla"})})
+    return jsonify({"count":collections.count_documents({"Make":"TESLA"})})
 
 @app.route("/count-bmw-secondary",methods=["GET"])
 def count_bmw_secondary():
     collections = db["vehicles"].with_options(read_preference=ReadPreference.SECONDARY_PREFERRED)
-    return jsonify({"count":collections.count_documents({"make":"BMW"})})
+    return jsonify({"count":collections.count_documents({"Make":"BMW"})})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",debug=True)

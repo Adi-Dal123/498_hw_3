@@ -19,7 +19,7 @@ def insert_fast():
 @app.route("/insert-safe", methods=["POST"])
 def insert_safe():
     payload = request.json
-    collections = db["vehicles"].with_options(write_concern=WriteConcern(w=majority))
+    collections = db["vehicles"].with_options(write_concern=WriteConcern(w="majority"))
     id = collections.insert_one(payload)
     return jsonify(str(id.inserted_id))
 
@@ -30,8 +30,8 @@ def count_tesla_primary():
 
 @app.route("/count-bmw-secondary",methods=["GET"])
 def count_bmw_secondary():
-    collections = db["vehicles"].with_options(read_preference=ReadPreference.SECONDARYPREFERRED)
+    collections = db["vehicles"].with_options(read_preference=ReadPreference.SECONDARY_PREFERRED)
     return jsonify({"count":collections.count_documents({"make":"BMW"})})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=8080,debug=True)

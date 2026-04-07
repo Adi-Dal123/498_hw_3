@@ -3,7 +3,7 @@ from pymongo.errors import ConnectionFailure, OperationFailure
 from flask import Flask, jsonify, request
 
 # Replace with your Atlas connection string
-ATLAS_CONNECTION_STRING = "mongodb+srv://lab6user:wEMl5YPW3b1TiRQq@cluster0.u8ah3ne.mongodb.net/?appName=Cluster0"
+ATLAS_CONNECTION_STRING = "mongodb+srv://user:passWord@cluster.z4qr5p9.mongodb.net/?appName=Cluster"
 
 client = MongoClient(ATLAS_CONNECTION_STRING)
 db = client["ev_db"]         
